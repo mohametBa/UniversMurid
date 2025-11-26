@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+/* Variables CSS de base */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-geist-sans: system-ui, -apple-system, sans-serif;
+  --font-geist-mono: "Monaco", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Configuration du thème pour Tailwind v4 */
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Styles de base du body */
+body {
+  @apply bg-white dark:bg-black text-black dark:text-white;
+  font-family: var(--font-geist-sans);
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light dark;
+}
+
+/* Header avec safe-area */
+.header {
+  padding-top: env(safe-area-inset-top);
+  @apply bg-white dark:bg-gray-900;
+}
+
+/* ============== ANIMATIONS PERSONNALISÉES ============== */
+
+@keyframes ping-slow {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes radiate {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.6;
+  }
+  50% {
+    width: 200px;
+    height: 200px;
+    opacity: 0.4;
+  }
+  100% {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+  }
+}
+
+@keyframes radiate-delayed {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.4;
+  }
+  30% {
+    width: 100px;
+    height: 100px;
+    opacity: 0.3;
+  }
+  100% {
+    width: 600px;
+    height: 600px;
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* ============== CLASSES UTILITAIRES ============== */
+
+.animate-ping-slow {
+  animation: ping-slow 3s ease-in-out infinite;
+}
+
+.animate-radiate {
+  animation: radiate 4s ease-out infinite;
+}
+
+.animate-radiate-delayed {
+  animation: radiate-delayed 5s ease-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+.bg-gradient-radial-2 {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* ============== EFFETS AU SURVOL ============== */
+
+.group:hover .animate-ping-slow,
+.group:hover .animate-radiate,
+.group:hover .animate-radiate-delayed,
+.group:hover .animate-shimmer {
+  opacity: 1 !important;
+  animation-play-state: running;
+}
+
+.group:hover .bg-gradient-radial {
+  animation: radiate 4s ease-out infinite;
+}
+
+.group:hover .bg-gradient-radial-2 {
+  animation: radiate-delayed 5s ease-out infinite;
+}
+
+.group:hover .animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}

@@ -1,0 +1,39 @@
+{
+  "name": "Khassida - Les Œuvres de Cheikh Ahmadou Bamba",
+  "short_name": "Khassida",
+  "description": "Plateforme spirituelle pour découvrir, lire et écouter les Khassida de Cheikh Ahmadou Bamba dans plusieurs langues",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1F2937",
+  "orientation": "portrait-primary",
+  "categories": ["books", "education", "lifestyle"],
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/LogoUm.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/LogoUm.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/serigneTouba.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}
