@@ -18,7 +18,9 @@ import {
   Save,
   RotateCcw,
   Play,
-  Pause
+  Pause,
+  Crown,
+  TrendingUp
 } from 'lucide-react';
 import { KhidmaTask, KhidmaGameState, KhidmaProgress } from '../types';
 import { useGameStats } from '@/lib/hooks/useGameStats';
@@ -223,183 +225,292 @@ export default function KhidmaSystem({ gameState, onGameStateUpdate }: KhidmaSys
   };
 
   return (
-    <div className="bg-gradient-to-br from-amber-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-2xl p-6 border border-orange-200 dark:border-gray-700">
+    <div className="bg-gradient-to-br from-amber-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-2xl p-6 border border-orange-200 dark:border-gray-700 shadow-xl">
       {/* Header du système de Khidma */}
-      <div className="mb-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 space-y-3 sm:space-y-0">
-          <h2 className="text-xl sm:text-2xl font-bold text-orange-800 flex items-center">
-            <Heart className="w-6 h-6 sm:w-7 sm:h-7 mr-2 sm:mr-3" />
-            Système de Khidma
-          </h2>
-          <div className="text-left sm:text-right">
-            <div className="text-sm text-orange-600">Réputation</div>
-            <div className="text-xl sm:text-2xl font-bold text-orange-800">Niveau {khidmaStats.reputationLevel}</div>
+      <div className="mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 space-y-4 sm:space-y-0">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-orange-800 dark:text-orange-300 flex items-center mb-2">
+              <div className="bg-gradient-to-r from-orange-500 to-red-600 p-2 rounded-lg mr-3">
+                <Heart className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+              </div>
+              Système de Khidma
+            </h2>
+            <p className="text-orange-600 dark:text-orange-400 text-sm sm:text-base">Service communautaire et développement spirituel</p>
+          </div>
+          <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl p-6 text-white shadow-lg">
+            <div className="text-xs text-orange-200 mb-1">Réputation Actuelle</div>
+            <div className="text-3xl font-bold flex items-center">
+              <Crown className="w-7 h-7 mr-2 text-yellow-300" />
+              Niveau {khidmaStats.reputationLevel}
+            </div>
           </div>
         </div>
 
         {/* Indicateur de sauvegarde automatique */}
         {user && (
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-white rounded-lg p-3 border border-orange-200 mb-4 space-y-2 sm:space-y-0">
-            <div className="flex items-center space-x-2">
-              {isSaving ? (
-                <div className="w-4 h-4 border-2 border-orange-600 border-t-transparent rounded-full animate-spin" />
-              ) : hasUnsavedChanges ? (
-                <Save className="w-4 h-4 text-orange-500" />
-              ) : (
-                <CheckCircle className="w-4 h-4 text-green-500" />
-              )}
-              <span className="text-sm text-gray-600">
-                {isSaving ? 'Sauvegarde en cours...' : 
-                 hasUnsavedChanges ? 'Modifications non sauvegardées' :
-                 `Dernière sauvegarde: ${formatLastSaved(lastSaved)}`}
-              </span>
-            </div>
-            
-            {currentSession && (
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-xs text-gray-500">Session active</span>
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-4 border border-orange-200 dark:border-gray-700 mb-6 shadow-lg">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between space-y-3 sm:space-y-0">
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2">
+                  {isSaving ? (
+                    <div className="w-4 h-4 border-2 border-orange-600 border-t-transparent rounded-full animate-spin" />
+                  ) : hasUnsavedChanges ? (
+                    <Save className="w-4 h-4 text-orange-500" />
+                  ) : (
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                  )}
+                  <span className="text-sm font-medium text-slate-600 dark:text-gray-300">
+                    {isSaving ? 'Sauvegarde en cours...' : 
+                     hasUnsavedChanges ? 'Modifications non sauvegardées' :
+                     `Dernière sauvegarde: ${formatLastSaved(lastSaved)}`}
+                  </span>
+                </div>
               </div>
-            )}
+              
+              {currentSession && (
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-xs text-slate-500 dark:text-gray-400">Session active</span>
+                </div>
+              )}
+            </div>
           </div>
         )}
 
         {/* Statistiques */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
-          <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm border border-orange-200">
-            <div className="text-xl sm:text-2xl font-bold text-orange-600">{khidmaStats.completedTasks}</div>
-            <div className="text-xs sm:text-sm text-slate-600">Tâches complétées</div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-orange-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 group">
+            <div className="flex items-center justify-between mb-3">
+              <div className="bg-orange-100 dark:bg-orange-900/30 p-2 rounded-lg">
+                <CheckCircle className="w-5 h-5 text-orange-600" />
+              </div>
+              <TrendingUp className="w-5 h-5 text-slate-400 group-hover:text-orange-500 transition-colors" />
+            </div>
+            <div className="text-3xl font-bold text-orange-600 mb-1">{khidmaStats.completedTasks}</div>
+            <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Tâches complétées</div>
           </div>
-          <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm border border-orange-200">
-            <div className="text-xl sm:text-2xl font-bold text-red-600">{khidmaStats.totalBarakaEarned}</div>
-            <div className="text-xs sm:text-sm text-slate-600">Baraka totale</div>
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-red-200 dark:border-red-800 hover:shadow-xl transition-all duration-300 group">
+            <div className="flex items-center justify-between mb-3">
+              <div className="bg-red-100 dark:bg-red-900/30 p-2 rounded-lg">
+                <Sparkles className="w-5 h-5 text-red-600" />
+              </div>
+              <Heart className="w-5 h-5 text-slate-400 group-hover:text-red-500 transition-colors" />
+            </div>
+            <div className="text-3xl font-bold text-red-600 mb-1">{khidmaStats.totalBarakaEarned}</div>
+            <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Baraka totale</div>
           </div>
-          <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm border border-orange-200">
-            <div className="text-xl sm:text-2xl font-bold text-orange-600">{khidmaStats.currentStreak}</div>
-            <div className="text-xs sm:text-sm text-slate-600">Série actuelle</div>
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-orange-200 dark:border-orange-800 hover:shadow-xl transition-all duration-300 group">
+            <div className="flex items-center justify-between mb-3">
+              <div className="bg-orange-100 dark:bg-orange-900/30 p-2 rounded-lg">
+                <Target className="w-5 h-5 text-orange-600" />
+              </div>
+              <Trophy className="w-5 h-5 text-slate-400 group-hover:text-orange-500 transition-colors" />
+            </div>
+            <div className="text-3xl font-bold text-orange-600 mb-1">{khidmaStats.currentStreak}</div>
+            <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Série actuelle</div>
           </div>
-          <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm border border-orange-200">
-            <div className="text-xl sm:text-2xl font-bold text-green-600">{khidmaStats.barakaForNextLevel - khidmaStats.totalBarakaEarned}</div>
-            <div className="text-xs sm:text-sm text-slate-600">Baraka pour niveau +</div>
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-green-200 dark:border-green-800 hover:shadow-xl transition-all duration-300 group">
+            <div className="flex items-center justify-between mb-3">
+              <div className="bg-green-100 dark:bg-green-900/30 p-2 rounded-lg">
+                <Award className="w-5 h-5 text-green-600" />
+              </div>
+              <Star className="w-5 h-5 text-slate-400 group-hover:text-green-500 transition-colors" />
+            </div>
+            <div className="text-3xl font-bold text-green-600 mb-1">{khidmaStats.barakaForNextLevel - khidmaStats.totalBarakaEarned}</div>
+            <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Baraka pour niveau +</div>
           </div>
         </div>
       </div>
 
       {/* Barre de progression de réputation */}
-      <div className="bg-white rounded-lg p-4 mb-6 border border-orange-200">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-orange-800">
-            Progression Réputation Niveau {khidmaStats.reputationLevel}
-          </span>
-          <span className="text-sm text-slate-600">
-            {khidmaStats.totalBarakaEarned}/{khidmaStats.barakaForNextLevel} Baraka
-          </span>
+      <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 mb-8 border border-orange-200 dark:border-gray-700 shadow-lg">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center">
+            <div className="bg-gradient-to-r from-orange-500 to-red-600 p-2 rounded-lg mr-3">
+              <Crown className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <span className="text-lg font-bold text-orange-800 dark:text-orange-300">
+                Progression Réputation Niveau {khidmaStats.reputationLevel}
+              </span>
+              <p className="text-xs text-orange-600 dark:text-orange-400">Prochain niveau dans {khidmaStats.barakaForNextLevel - khidmaStats.totalBarakaEarned} Baraka</p>
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="text-xs text-slate-600 dark:text-gray-400 mb-1">Progression</div>
+            <div className="text-2xl font-bold text-orange-800 dark:text-orange-300">
+              {khidmaStats.totalBarakaEarned}/{khidmaStats.barakaForNextLevel}
+            </div>
+          </div>
         </div>
-        <div className="w-full bg-slate-200 rounded-full h-3">
+        <div className="w-full bg-slate-200 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
           <div 
-            className="bg-gradient-to-r from-orange-500 to-red-600 h-3 rounded-full transition-all duration-300"
+            className="bg-gradient-to-r from-orange-500 to-red-600 h-4 rounded-full transition-all duration-500 shadow-lg"
             style={{ 
               width: `${Math.min((khidmaStats.totalBarakaEarned % 100), 100)}%` 
             }}
           ></div>
         </div>
+        <div className="flex justify-between mt-2 text-xs text-slate-600 dark:text-gray-400">
+          <span>Niveau {khidmaStats.reputationLevel}</span>
+          <span>{Math.round((khidmaStats.totalBarakaEarned % 100))}%</span>
+          <span>Niveau {khidmaStats.reputationLevel + 1}</span>
+        </div>
       </div>
 
       {/* Tâches en cours */}
       {isTaskInProgress && selectedTask && (
-        <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white mb-6">
-          <div className="flex items-center mb-4">
-            {getTaskTypeIcon(selectedTask.type)}
-            <h3 className="text-xl font-bold ml-3">{selectedTask.title}</h3>
-          </div>
-          
-          <p className="text-green-100 mb-4">{selectedTask.description}</p>
-          
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center">
-                <Clock className="w-4 h-4 mr-1" />
-                <span className="text-sm">{selectedTask.timeRequired}min</span>
-              </div>
-              <div className="flex items-center">
-                <Sparkles className="w-4 h-4 mr-1" />
-                <span className="text-sm">+{selectedTask.barakaReward} Baraka</span>
-              </div>
+        <div className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-2xl p-8 text-white mb-8 shadow-2xl border border-emerald-300">
+          <div className="flex items-center mb-6">
+            <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl mr-4">
+              {getTaskTypeIcon(selectedTask.type)}
             </div>
-            <div className="text-right">
-              <div className="text-sm text-green-200">Progression</div>
-              <div className="text-lg font-bold">{Math.round(taskProgress)}%</div>
+            <div>
+              <h3 className="text-2xl font-bold">{selectedTask.title}</h3>
+              <p className="text-emerald-200 text-sm">{getTaskTypeName(selectedTask.type)}</p>
             </div>
           </div>
           
-          <div className="w-full bg-green-400/30 rounded-full h-3">
-            <div 
-              className="bg-white h-3 rounded-full transition-all duration-1000"
-              style={{ width: `${taskProgress}%` }}
-            ></div>
+          <p className="text-emerald-100 mb-6 leading-relaxed">{selectedTask.description}</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+              <div className="flex items-center mb-2">
+                <Clock className="w-5 h-5 mr-2" />
+                <span className="font-semibold">Durée</span>
+              </div>
+              <div className="text-2xl font-bold">{selectedTask.timeRequired} min</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+              <div className="flex items-center mb-2">
+                <Sparkles className="w-5 h-5 mr-2" />
+                <span className="font-semibold">Récompense</span>
+              </div>
+              <div className="text-2xl font-bold">+{selectedTask.barakaReward}</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-semibold">Progression</span>
+                <span className="text-lg font-bold">{Math.round(taskProgress)}%</span>
+              </div>
+              <div className="w-full bg-white/20 rounded-full h-3">
+                <div 
+                  className="bg-white h-3 rounded-full transition-all duration-1000 shadow-lg"
+                  style={{ width: `${taskProgress}%` }}
+                ></div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex items-center justify-center">
+            <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 border border-white/30">
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse mr-2"></div>
+                <span className="text-sm font-medium">Tâche en cours d'exécution...</span>
+              </div>
+            </div>
           </div>
         </div>
       )}
 
       {/* Liste des tâches disponibles */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {availableTasks.map((task) => {
           const difficultyConfig = DIFFICULTY_CONFIG[task.difficulty];
+          const colorClasses = {
+            green: {
+              border: 'border-green-200 dark:border-green-700 hover:border-green-400 dark:hover:border-green-500',
+              bg: 'bg-green-50 dark:bg-green-900/10',
+              iconBg: 'bg-green-100 dark:bg-green-900/30',
+              icon: 'text-green-600',
+              badge: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400',
+              button: 'bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700'
+            },
+            yellow: {
+              border: 'border-yellow-200 dark:border-yellow-700 hover:border-yellow-400 dark:hover:border-yellow-500',
+              bg: 'bg-yellow-50 dark:bg-yellow-900/10',
+              iconBg: 'bg-yellow-100 dark:bg-yellow-900/30',
+              icon: 'text-yellow-600',
+              badge: 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400',
+              button: 'bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700'
+            },
+            red: {
+              border: 'border-red-200 dark:border-red-700 hover:border-red-400 dark:hover:border-red-500',
+              bg: 'bg-red-50 dark:bg-red-900/10',
+              iconBg: 'bg-red-100 dark:bg-red-900/30',
+              icon: 'text-red-600',
+              badge: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400',
+              button: 'bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700'
+            }
+          };
+          const colors = colorClasses[difficultyConfig.color as keyof typeof colorClasses];
           
           return (
             <div
               key={task.id}
-              className={`bg-white rounded-xl p-4 sm:p-5 border-2 ${
-                difficultyConfig.color === 'green' ? 'border-green-200' :
-                difficultyConfig.color === 'yellow' ? 'border-yellow-200' : 'border-red-200'
-              } hover:shadow-lg transition-all cursor-pointer`}
+              className={`group bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 border-2 transition-all duration-300 hover:scale-105 hover:shadow-2xl ${colors.border}`}
               onClick={() => !isTaskInProgress && startTask(task)}
             >
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-3 space-y-2 sm:space-y-0">
+              <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center">
-                  <div className={`p-2 rounded-lg ${
-                    difficultyConfig.color === 'green' ? 'bg-green-50' :
-                    difficultyConfig.color === 'yellow' ? 'bg-yellow-50' : 'bg-red-50'
-                  } mr-2 sm:mr-3`}>
-                    {getTaskTypeIcon(task.type)}
+                  <div className={`${colors.iconBg} p-3 rounded-xl mr-4 transition-all group-hover:scale-110`}>
+                    <div className={colors.icon}>
+                      {getTaskTypeIcon(task.type)}
+                    </div>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-800 text-sm sm:text-base">{task.title}</h4>
-                    <p className="text-xs sm:text-sm text-slate-600">{getTaskTypeName(task.type)}</p>
+                    <h4 className="font-bold text-slate-800 dark:text-white text-lg group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">{task.title}</h4>
+                    <p className="text-sm text-slate-600 dark:text-gray-400">{getTaskTypeName(task.type)}</p>
                   </div>
                 </div>
-                <div className={`px-2 py-1 rounded-full text-xs font-medium self-start sm:self-center ${
-                  difficultyConfig.color === 'green' ? 'text-green-600 bg-green-50' :
-                  difficultyConfig.color === 'yellow' ? 'text-yellow-600 bg-yellow-50' : 'text-red-600 bg-red-50'
-                }`}>
-                  {task.difficulty === 'easy' ? 'Facile' : task.difficulty === 'medium' ? 'Moyen' : 'Difficile'}
+                <div className={`px-3 py-1.5 rounded-full text-xs font-semibold ${colors.badge}`}>
+                  {task.difficulty === 'easy' ? '🟢 Facile' : task.difficulty === 'medium' ? '🟡 Moyen' : '🔴 Difficile'}
                 </div>
               </div>
               
-              <p className="text-xs sm:text-sm text-slate-600 mb-4">{task.description}</p>
+              <p className="text-slate-600 dark:text-gray-300 mb-6 leading-relaxed">{task.description}</p>
               
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between space-y-2 sm:space-y-0">
-                <div className="flex items-center space-x-3 sm:space-x-4 text-xs sm:text-sm text-slate-600">
-                  <div className="flex items-center">
-                    <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                    <span>{task.timeRequired}min</span>
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                <div className="bg-slate-50 dark:bg-gray-700/50 rounded-xl p-3 text-center">
+                  <div className="flex items-center justify-center mb-1">
+                    <Clock className="w-4 h-4 text-slate-600" />
                   </div>
-                  <div className="flex items-center">
-                    <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                    <span>+{task.barakaReward}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="text-green-600">+{task.faaidaReward}F</span>
-                  </div>
+                  <div className="text-lg font-bold text-slate-800 dark:text-white">{task.timeRequired}min</div>
+                  <div className="text-xs text-slate-600 dark:text-gray-400">Durée</div>
                 </div>
-                
-                <button
-                  disabled={isTaskInProgress}
-                  className="bg-blue-500 hover:bg-blue-600 disabled:bg-slate-400 text-white text-xs sm:text-sm font-medium py-2 px-3 sm:px-4 rounded-lg transition-colors self-start sm:self-center"
-                >
-                  {isTaskInProgress ? 'Occupé...' : 'Commencer'}
-                </button>
+                <div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-3 text-center">
+                  <div className="flex items-center justify-center mb-1">
+                    <Sparkles className="w-4 h-4 text-red-600" />
+                  </div>
+                  <div className="text-lg font-bold text-red-600">+{task.barakaReward}</div>
+                  <div className="text-xs text-red-600">Baraka</div>
+                </div>
+                <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-3 text-center">
+                  <div className="flex items-center justify-center mb-1">
+                    <span className="text-green-600 font-bold text-sm">F</span>
+                  </div>
+                  <div className="text-lg font-bold text-green-600">+{task.faaidaReward}</div>
+                  <div className="text-xs text-green-600">Faaïda</div>
+                </div>
               </div>
+              
+              <button
+                disabled={isTaskInProgress}
+                className={`w-full ${colors.button} disabled:from-slate-400 disabled:to-slate-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl disabled:cursor-not-allowed flex items-center justify-center group-hover:scale-105`}
+              >
+                {isTaskInProgress ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                    Occupé...
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-4 h-4 mr-2" />
+                    Commencer cette tâche
+                  </>
+                )}
+              </button>
             </div>
           );
         })}

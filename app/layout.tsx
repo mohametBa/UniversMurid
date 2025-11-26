@@ -8,7 +8,6 @@ import ServiceWorker from "./components/ServiceWorker";
 import PWAInstallPrompt from "./components/PWAInstallPrompt";
 import StatusBarConfig from "./components/StatusBarConfig";
 import SessionManager from "./components/SessionManager";
-import BackgroundEffects from "./components/BackgroundEffects";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,9 +68,7 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        >
-          <BackgroundEffects />
-          
+        >          
           <AuthProvider>
             {/* Zone de contenu principal */}
             <div className="relative z-10 flex flex-col min-h-screen">

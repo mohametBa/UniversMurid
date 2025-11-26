@@ -275,37 +275,72 @@ export default function LearningPortals({ gameState, onGameStateUpdate }: Learni
 
   // Vue d'ensemble des portails
   return (
-    <div className="bg-gradient-to-br from-amber-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-2xl p-6 border border-cyan-200 dark:border-gray-700">
-      <div className="mb-6">
-        <h2 className="text-xl sm:text-2xl font-bold text-cyan-800 flex items-center mb-2">
-          <Brain className="w-6 h-6 sm:w-7 sm:h-7 mr-2 sm:mr-3" />
-          Portails d'Apprentissage
-        </h2>
-        <p className="text-cyan-600 text-sm sm:text-base">Développez votre connaissance spirituelle</p>
+    <div className="bg-gradient-to-br from-amber-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-2xl p-6 border border-cyan-200 dark:border-gray-700 shadow-xl">
+      <div className="mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-cyan-800 dark:text-cyan-300 flex items-center mb-2">
+              <div className="bg-gradient-to-r from-cyan-500 to-blue-600 p-2 rounded-lg mr-3">
+                <Brain className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+              </div>
+              Portails d'Apprentissage
+            </h2>
+            <p className="text-cyan-600 dark:text-cyan-400 text-sm sm:text-base">Développez votre connaissance spirituelle</p>
+          </div>
+          <div className="mt-4 sm:mt-0">
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg border border-cyan-200 dark:border-gray-700">
+              <div className="text-xs text-cyan-600 dark:text-cyan-400 mb-1">Points d'Éveil</div>
+              <div className="text-2xl font-bold text-cyan-800 dark:text-cyan-300 flex items-center">
+                <Sparkles className="w-5 h-5 mr-2 text-yellow-500" />
+                {gameState.player.resources.leveil}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Statistiques d'apprentissage */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 mb-6">
-        <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm border border-cyan-200">
-          <div className="text-xl sm:text-2xl font-bold text-cyan-600">{getCurrentPortals().filter((p: LearningPortal) => p.isUnlocked).length}</div>
-          <div className="text-xs sm:text-sm text-slate-600">Portails débloqués</div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-8">
+        <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg border border-cyan-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+          <div className="text-2xl sm:text-3xl font-bold text-cyan-600 mb-2 flex items-center">
+            <div className="bg-cyan-100 dark:bg-cyan-900/30 p-2 rounded-lg mr-3">
+              <BookOpen className="w-5 h-5 text-cyan-600" />
+            </div>
+            {getCurrentPortals().filter((p: LearningPortal) => p.isUnlocked).length}
+          </div>
+          <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Portails débloqués</div>
         </div>
-        <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm border border-cyan-200">
-          <div className="text-xl sm:text-2xl font-bold text-yellow-600">{gameState.player.resources.leveil}</div>
-          <div className="text-xs sm:text-sm text-slate-600">Points d'Éveil</div>
+        <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg border border-yellow-200 dark:border-yellow-800 hover:shadow-xl transition-all duration-300">
+          <div className="text-2xl sm:text-3xl font-bold text-yellow-600 mb-2 flex items-center">
+            <div className="bg-yellow-100 dark:bg-yellow-900/30 p-2 rounded-lg mr-3">
+              <Star className="w-5 h-5 text-yellow-600" />
+            </div>
+            {gameState.player.resources.leveil}
+          </div>
+          <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Points d'Éveil</div>
         </div>
-        <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm border border-cyan-200">
-          <div className="text-xl sm:text-2xl font-bold text-green-600">0</div>
-          <div className="text-xs sm:text-sm text-slate-600">Quizz terminés</div>
+        <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg border border-green-200 dark:border-green-800 hover:shadow-xl transition-all duration-300">
+          <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-2 flex items-center">
+            <div className="bg-green-100 dark:bg-green-900/30 p-2 rounded-lg mr-3">
+              <CheckCircle className="w-5 h-5 text-green-600" />
+            </div>
+            0
+          </div>
+          <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Quizz terminés</div>
         </div>
-        <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm border border-cyan-200">
-          <div className="text-xl sm:text-2xl font-bold text-blue-600">0%</div>
-          <div className="text-xs sm:text-sm text-slate-600">Taux de réussite</div>
+        <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg border border-blue-200 dark:border-blue-800 hover:shadow-xl transition-all duration-300">
+          <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2 flex items-center">
+            <div className="bg-blue-100 dark:bg-blue-900/30 p-2 rounded-lg mr-3">
+              <Trophy className="w-5 h-5 text-blue-600" />
+            </div>
+            0%
+          </div>
+          <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Taux de réussite</div>
         </div>
       </div>
 
       {/* Grille des portails */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
         {getCurrentPortals().map((portal: LearningPortal) => {
           const isUnlocked = portal.isUnlocked;
           const requiredBaraka = portal.requiredBaraka;
@@ -314,69 +349,81 @@ export default function LearningPortals({ gameState, onGameStateUpdate }: Learni
           return (
             <div
               key={portal.id}
-              className={`bg-white rounded-xl p-4 sm:p-6 border-2 transition-all ${
+              className={`group bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 border-2 transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
                 isUnlocked 
-                  ? 'border-purple-200 hover:border-purple-400 hover:shadow-lg cursor-pointer' 
-                  : 'border-slate-200 opacity-75'
+                  ? 'border-purple-200 dark:border-purple-700 hover:border-purple-400 dark:hover:border-purple-500 cursor-pointer' 
+                  : 'border-slate-200 dark:border-gray-700 opacity-60'
               }`}
               onClick={() => isUnlocked && startQuiz(portal)}
             >
-              <div className="flex items-start justify-between mb-3 sm:mb-4">
-                <div className={`p-2 sm:p-3 rounded-lg ${
-                  isUnlocked ? 'bg-purple-100' : 'bg-slate-100'
+              <div className="flex items-start justify-between mb-4">
+                <div className={`p-3 rounded-xl transition-all ${
+                  isUnlocked 
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg' 
+                    : 'bg-slate-100 dark:bg-gray-700'
                 }`}>
                   {isUnlocked ? (
-                    <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
+                    <BookOpen className="w-6 h-6" />
                   ) : (
-                    <Lock className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400" />
+                    <Lock className="w-6 h-6 text-slate-400" />
                   )}
                 </div>
                 
                 <div className="text-right">
-                  <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    isUnlocked ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'
+                  <div className={`px-3 py-1.5 rounded-full text-xs font-semibold ${
+                    isUnlocked 
+                      ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' 
+                      : 'bg-slate-100 dark:bg-gray-700 text-slate-500 dark:text-gray-400'
                   }`}>
-                    {isUnlocked ? 'Débloqué' : 'Verrouillé'}
+                    {isUnlocked ? '✓ Débloqué' : '🔒 Verrouillé'}
                   </div>
                 </div>
               </div>
               
-              <h3 className={`text-base sm:text-lg font-semibold mb-2 ${
-                isUnlocked ? 'text-slate-800' : 'text-slate-500'
+              <h3 className={`text-lg font-bold mb-3 ${
+                isUnlocked ? 'text-slate-800 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400' : 'text-slate-500 dark:text-gray-400'
               }`}>
                 {portal.title}
               </h3>
               
-              <p className={`text-xs sm:text-sm mb-3 sm:mb-4 ${
-                isUnlocked ? 'text-slate-600' : 'text-slate-400'
+              <p className={`text-sm mb-4 leading-relaxed ${
+                isUnlocked ? 'text-slate-600 dark:text-gray-300' : 'text-slate-400 dark:text-gray-500'
               }`}>
                 {portal.description}
               </p>
               
               <div className="flex items-center justify-between">
-                <div className="flex items-center text-xs sm:text-sm text-slate-600">
-                  <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                <div className="flex items-center text-xs font-medium text-slate-600 dark:text-gray-400">
+                  <div className="bg-yellow-100 dark:bg-yellow-900/30 p-1.5 rounded-lg mr-2">
+                    <Star className="w-3 h-3 text-yellow-600" />
+                  </div>
                   <span>{requiredBaraka} Baraka requis</span>
                 </div>
                 
                 {isUnlocked && (
-                  <div className="flex items-center text-purple-600 text-xs sm:text-sm font-medium">
+                  <div className="flex items-center text-purple-600 dark:text-purple-400 text-sm font-semibold">
                     <span className="mr-1">Commencer</span>
-                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <div className="bg-purple-100 dark:bg-purple-900/30 p-1 rounded-lg">
+                      <ArrowRight className="w-3 h-3" />
+                    </div>
                   </div>
                 )}
               </div>
               
               {!isUnlocked && (
-                <div className="mt-3 pt-3 border-t border-slate-200">
-                  <div className="text-xs text-slate-500 mb-1">
-                    Besoin de {requiredBaraka - currentBaraka} Baraka supplémentaires
+                <div className="mt-4 pt-4 border-t border-slate-200 dark:border-gray-600">
+                  <div className="flex items-center justify-between text-xs text-slate-500 dark:text-gray-400 mb-2">
+                    <span>Progression</span>
+                    <span>{currentBaraka}/{requiredBaraka}</span>
                   </div>
-                  <div className="w-full bg-slate-200 rounded-full h-2">
+                  <div className="w-full bg-slate-200 dark:bg-gray-600 rounded-full h-2">
                     <div 
-                      className="bg-purple-500 h-2 rounded-full transition-all duration-300"
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-500"
                       style={{ width: `${Math.min((currentBaraka / requiredBaraka) * 100, 100)}%` }}
                     ></div>
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-gray-400 mt-1">
+                    Besoin de {requiredBaraka - currentBaraka} Baraka supplémentaires
                   </div>
                 </div>
               )}
@@ -386,19 +433,43 @@ export default function LearningPortals({ gameState, onGameStateUpdate }: Learni
       </div>
 
       {/* Message d'information */}
-      <div className="mt-8 bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-6 border border-purple-200">
-        <div className="flex items-center mb-3">
-          <Lightbulb className="w-6 h-6 text-purple-600 mr-3" />
-          <h3 className="text-lg font-semibold text-purple-800">Comment progresser</h3>
+      <div className="mt-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-8 text-white shadow-2xl">
+        <div className="flex items-center mb-6">
+          <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl mr-4">
+            <Lightbulb className="w-7 h-7 text-white" />
+          </div>
+          <h3 className="text-2xl font-bold">Comment progresser</h3>
         </div>
-        <p className="text-purple-700 mb-4">
-          Pour débloquer les portails d'apprentissage, accumulez de la <strong>Baraka</strong> en servant 
-          votre communauté. Chaque portail nécessite un seuil minimum de Baraka et offre des récompenses 
-          en <strong>L'Éveil</strong> pour réussir les quizz.
-        </p>
-        <p className="text-sm text-purple-600 italic">
-          "L'Éveil est obligatoire pour les grosses améliorations matérielles" - Principe fondamental du jeu
-        </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div>
+            <p className="text-purple-100 mb-4 leading-relaxed">
+              Pour débloquer les portails d'apprentissage, accumulez de la <strong className="text-yellow-300">Baraka</strong> en servant 
+              votre communauté. Chaque portail nécessite un seuil minimum de Baraka et offre des récompenses 
+              en <strong className="text-yellow-300">L'Éveil</strong> pour réussir les quizz.
+            </p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+              <div className="flex items-center mb-2">
+                <Crown className="w-5 h-5 text-yellow-300 mr-2" />
+                <span className="font-semibold text-yellow-300">Conseil</span>
+              </div>
+              <p className="text-sm text-purple-100">
+                Plus vousaccumulez de Baraka, plus vous débloquez de connaissances spirituelles avancées.
+              </p>
+            </div>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+            <div className="flex items-center mb-4">
+              <Award className="w-6 h-6 text-yellow-300 mr-3" />
+              <span className="text-lg font-semibold text-yellow-300">Principe Fondamental</span>
+            </div>
+            <p className="text-purple-100 italic text-center text-lg leading-relaxed">
+              "L'Éveil est obligatoire pour les grosses améliorations matérielles"
+            </p>
+            <div className="mt-4 text-center">
+              <div className="text-sm text-purple-200">- Sagesse du jeu -</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
