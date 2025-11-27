@@ -86,7 +86,6 @@ export default function Footer() {
               <p>eluniversomurid@gmail.com</p>
               <p>+33 644 76 12 08</p>
               <p>+221 75 635 13 13</p>
-              <p>123 Rue de la Paix</p>
               <p>75001 Paris</p>
             </div>
           </div>
@@ -96,7 +95,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 dark:border-gray-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 md:mb-0">
-              © 2024 UniversMurid. Tous droits réservés.
+              © 2025 UniversMurid. Tous droits réservés.
             </p>
             <div className="flex items-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
               <a href="#" className="hover:text-white dark:hover:text-white transition-colors">

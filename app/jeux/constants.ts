@@ -1,6 +1,6 @@
 // Constantes centralisées pour "Le Sentier de la Khidma" - Serious Game éducatif spirituel
 
-import { LearningPortal, QuizQuestion, KhidmaTask } from './types';
+import { LearningPortal, QuizQuestion, KhidmaTask, DiscipleLevel, FarmPlot, KhidmaGameState } from './types';
 
 // ============================================================================
 // TYPES DE CULTURES (CROP_TYPES)
@@ -434,9 +434,72 @@ export type Season = keyof typeof SEASONS;
 export type Difficulty = keyof typeof DIFFICULTY_CONFIG;
 
 // ============================================================================
+// NIVEAUX DE DISCIPLE (DISCIPLE_LEVELS)
+// ============================================================================
+export const DISCIPLE_LEVELS = {
+  talib: { name: 'Tâlib (Étudiant)', icon: '🎓', color: 'from-emerald-500 to-teal-600', minExperience: 0 },
+  khadim: { name: 'Khâdim (Serviteur)', icon: '🙏', color: 'from-blue-500 to-cyan-600', minExperience: 100 },
+  salik: { name: 'Sâlik (Voyageur)', icon: '🚶‍♂️', color: 'from-purple-500 to-indigo-600', minExperience: 300 },
+  murid: { name: 'Murid (Aspirant)', icon: '👑', color: 'from-amber-500 to-orange-600', minExperience: 600 }
+};
+
+// ============================================================================
+// ÉTAT INITIAL DU JEU (INITIAL_GAME_STATE)
+// ============================================================================
+export const INITIAL_GAME_STATE: KhidmaGameState = {
+  player: {
+    level: 'talib' as DiscipleLevel,
+    experience: 0,
+    completedTasks: [],
+    unlockedLocations: ['village'],
+    resources: {
+      faaida: 50,
+      baraka: 0,
+      leveil: 0
+    }
+  },
+  farm: {
+    plots: [
+      { id: 'plot1', cropType: 'empty' as const, plantedDate: new Date(), harvestDate: null, isReady: false, productivity: 50 },
+      { id: 'plot2', cropType: 'empty' as const, plantedDate: new Date(), harvestDate: null, isReady: false, productivity: 50 },
+      { id: 'plot3', cropType: 'empty' as const, plantedDate: new Date(), harvestDate: null, isReady: false, productivity: 50 },
+      { id: 'plot4', cropType: 'empty' as const, plantedDate: new Date(), harvestDate: null, isReady: false, productivity: 50 }
+    ],
+    tools: {
+      houe: true,
+      tracteur: false,
+      semences: 10,
+      eau: 100
+    },
+    animals: {
+      poules: 2,
+      boeufs: 0
+    }
+  },
+  khidma: {
+    completedTasks: [],
+    currentStreak: 0,
+    totalBarakaEarned: 0,
+    reputationLevel: 1
+  },
+  currentLocation: 'village',
+  inventory: {
+    tools: ['houe'],
+    seeds: 10,
+    water: 100
+  },
+  achievements: [],
+  dailyBonuses: {
+    lastClaimed: new Date(),
+    streakDays: 0
+  }
+};
+
+// ============================================================================
 // VALEURS DÉTACHABLES POUR FACILITER L'ACCÈS
 // ============================================================================
 export const CROP_TYPE_KEYS = Object.keys(CROP_TYPES) as CropType[];
 export const SEASON_KEYS = Object.keys(SEASONS) as Season[];
 export const DIFFICULTY_KEYS = Object.keys(DIFFICULTY_CONFIG) as Difficulty[];
 export const PORTAL_THEMES = LEARNING_PORTALS.map(portal => portal.theme);
+export const DISCIPLE_LEVEL_KEYS = Object.keys(DISCIPLE_LEVELS) as (keyof typeof DISCIPLE_LEVELS)[];
