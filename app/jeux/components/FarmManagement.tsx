@@ -224,90 +224,90 @@ export default function FarmManagement({ gameState, onGameStateUpdate }: FarmMan
   const cultivatedPlots = gameState.farm.plots.filter(p => p.cropType !== 'empty').length;
 
   return (
-    <div className="bg-gradient-to-br from-amber-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-2xl p-6 border border-amber-200 dark:border-gray-700 shadow-xl">
+    <div className="bg-gradient-to-br from-amber-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-2xl p-4 sm:p-6 border border-amber-200 dark:border-gray-700 shadow-xl">
       {/* Header de la ferme */}
-      <div className="mb-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 space-y-4 sm:space-y-0">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-amber-800 dark:text-amber-300 flex items-center mb-2">
-              <div className="bg-gradient-to-r from-amber-500 to-orange-600 p-2 rounded-lg mr-3">
-                <Wheat className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 space-y-4 sm:space-y-0">
+          <div className="flex-1">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-amber-800 dark:text-amber-300 flex items-center mb-2">
+              <div className="bg-gradient-to-r from-amber-500 to-orange-600 p-2 rounded-lg mr-2 sm:mr-3">
+                <Wheat className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-white" />
               </div>
               Gestion Agricole - Dahir
             </h2>
             <p className="text-amber-600 dark:text-amber-400 text-sm sm:text-base">Cultivez votre terre, développez votre esprit</p>
           </div>
           
-          <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
-            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg border border-amber-200 dark:border-gray-700">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 flex-shrink-0">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl px-3 sm:px-4 py-3 shadow-lg border border-amber-200 dark:border-gray-700">
               <div className="text-xs text-amber-600 dark:text-amber-400 mb-1">Jour de jeu</div>
               <div className="font-bold text-amber-800 dark:text-amber-300 text-lg flex items-center">
                 <Calendar className="w-4 h-4 mr-2" />
                 {gameDay}
               </div>
             </div>
-            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg border border-amber-200 dark:border-gray-700">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl px-3 sm:px-4 py-3 shadow-lg border border-amber-200 dark:border-gray-700">
               <div className="text-xs text-amber-600 dark:text-amber-400 mb-1">Saison actuelle</div>
               <div className="font-bold text-amber-800 dark:text-amber-300 text-lg flex items-center">
                 {currentSeasonInfo.icon} {currentSeasonInfo.name}
               </div>
             </div>
-            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg border border-blue-200 dark:border-blue-700">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl px-3 sm:px-4 py-3 shadow-lg border border-blue-200 dark:border-blue-700">
               <div className="text-xs text-blue-600 dark:text-blue-400 mb-1">Météo</div>
               <div className="font-bold text-blue-800 dark:text-blue-300 text-lg">
-                {weather === 'sunny' ? '☀️ Ensoleillé' : weather === 'rainy' ? '🌧️ Pluvieux' : '⛅ Nuageux'}
+                {weather === 'sunny' ? '☀️' : weather === 'rainy' ? '🌧️' : '⛅'}
               </div>
             </div>
           </div>
         </div>
 
         {/* Statistiques de la ferme */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-amber-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 group">
-            <div className="flex items-center justify-between mb-3">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg border border-amber-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 group touch-manipulation min-h-[100px] sm:min-h-[120px]">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
               <div className="bg-amber-100 dark:bg-amber-900/30 p-2 rounded-lg">
-                <Sprout className="w-5 h-5 text-amber-600" />
+                <Sprout className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
               </div>
-              <TrendingUp className="w-5 h-5 text-slate-400 group-hover:text-amber-500 transition-colors" />
+              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-amber-500 transition-colors" />
             </div>
-            <div className="text-3xl font-bold text-amber-600 mb-1">{cultivatedPlots}/{totalPlots}</div>
+            <div className="text-2xl sm:text-3xl font-bold text-amber-600 mb-1">{cultivatedPlots}/{totalPlots}</div>
             <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Parcelles cultivées</div>
           </div>
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-orange-200 dark:border-orange-800 hover:shadow-xl transition-all duration-300 group">
-            <div className="flex items-center justify-between mb-3">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg border border-orange-200 dark:border-orange-800 hover:shadow-xl transition-all duration-300 group touch-manipulation min-h-[100px] sm:min-h-[120px]">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
               <div className="bg-orange-100 dark:bg-orange-900/30 p-2 rounded-lg">
-                <Wheat className="w-5 h-5 text-orange-600" />
+                <Wheat className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
               </div>
-              <Calendar className="w-5 h-5 text-slate-400 group-hover:text-orange-500 transition-colors" />
+              <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-orange-500 transition-colors" />
             </div>
-            <div className="text-3xl font-bold text-orange-600 mb-1">{readyToHarvest}</div>
+            <div className="text-2xl sm:text-3xl font-bold text-orange-600 mb-1">{readyToHarvest}</div>
             <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Prêtes à récolte</div>
           </div>
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-200 dark:border-blue-800 hover:shadow-xl transition-all duration-300 group">
-            <div className="flex items-center justify-between mb-3">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg border border-blue-200 dark:border-blue-800 hover:shadow-xl transition-all duration-300 group touch-manipulation min-h-[100px] sm:min-h-[120px]">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
               <div className="bg-blue-100 dark:bg-blue-900/30 p-2 rounded-lg">
-                <Plus className="w-5 h-5 text-blue-600" />
+                <Plus className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
               </div>
-              <RefreshCw className="w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-colors" />
+              <RefreshCw className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-blue-500 transition-colors" />
             </div>
-            <div className="text-3xl font-bold text-blue-600 mb-1">{gameState.inventory.seeds}</div>
+            <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">{gameState.inventory.seeds}</div>
             <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Semences disponibles</div>
           </div>
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-cyan-200 dark:border-cyan-800 hover:shadow-xl transition-all duration-300 group">
-            <div className="flex items-center justify-between mb-3">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg border border-cyan-200 dark:border-cyan-800 hover:shadow-xl transition-all duration-300 group touch-manipulation min-h-[100px] sm:min-h-[120px]">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
               <div className="bg-cyan-100 dark:bg-cyan-900/30 p-2 rounded-lg">
-                <Droplets className="w-5 h-5 text-cyan-600" />
+                <Droplets className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-600" />
               </div>
-              <Sun className="w-5 h-5 text-slate-400 group-hover:text-cyan-500 transition-colors" />
+              <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-cyan-500 transition-colors" />
             </div>
-            <div className="text-3xl font-bold text-cyan-600 mb-1">{gameState.farm.tools.eau}L</div>
+            <div className="text-2xl sm:text-3xl font-bold text-cyan-600 mb-1">{gameState.farm.tools.eau}L</div>
             <div className="text-xs sm:text-sm text-slate-600 dark:text-gray-400">Eau disponible</div>
           </div>
         </div>
       </div>
 
       {/* Grille des parcelles */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
         {gameState.farm.plots.map((plot, index) => {
           const isEmpty = plot.cropType === 'empty';
           const cropInfo = !isEmpty ? CROP_TYPES[plot.cropType as keyof typeof CROP_TYPES] : null;
@@ -319,7 +319,7 @@ export default function FarmManagement({ gameState, onGameStateUpdate }: FarmMan
           return (
             <div
               key={plot.id}
-              className={`group relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 border-2 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-2xl ${
+              className={`group relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border-2 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-2xl touch-manipulation min-h-[160px] sm:min-h-[180px] ${
                 selectedPlot === plot.id 
                   ? 'border-amber-500 shadow-2xl ring-4 ring-amber-200 dark:ring-amber-800' 
                   : isEmpty 
@@ -330,18 +330,18 @@ export default function FarmManagement({ gameState, onGameStateUpdate }: FarmMan
             >
               {/* Indicateur de sélection */}
               {selectedPlot === plot.id && (
-                <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                  <div className="w-4 h-4 bg-white rounded-full"></div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg animate-pulse z-10">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full"></div>
                 </div>
               )}
 
               <div className="text-center">
                 {/* État de la parcelle */}
-                <div className="text-5xl mb-4 transform transition-transform group-hover:scale-110">
+                <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-3 transform transition-transform group-hover:scale-110">
                   {isEmpty ? '🟫' : plot.isReady ? cropInfo!.icon : '🌱'}
                 </div>
                 
-                <div className={`font-bold text-lg mb-2 ${
+                <div className={`font-bold text-xs sm:text-sm lg:text-base mb-2 ${
                   isEmpty 
                     ? 'text-slate-500 dark:text-gray-400' 
                     : 'text-slate-800 dark:text-white'
@@ -351,32 +351,32 @@ export default function FarmManagement({ gameState, onGameStateUpdate }: FarmMan
                 
                 {!isEmpty && (
                   <>
-                    <div className={`text-sm mb-3 font-semibold ${
+                    <div className={`text-xs sm:text-sm mb-2 sm:mb-3 font-semibold ${
                       plot.isReady 
                         ? 'text-green-600 dark:text-green-400' 
                         : 'text-amber-600 dark:text-amber-400'
                     }`}>
-                      {plot.isReady ? '🌾 Prête à récolter !' : `${daysSincePlanted}/${cropInfo!.plantingTime} jours`}
+                      {plot.isReady ? '🌾 Prête !' : `${daysSincePlanted}/${cropInfo!.plantingTime}j`}
                     </div>
                     
                     {/* Barre de progression */}
                     {!plot.isReady && (
-                      <div className="w-full bg-slate-200 dark:bg-gray-600 rounded-full h-3 mb-3 overflow-hidden">
+                      <div className="w-full bg-slate-200 dark:bg-gray-600 rounded-full h-2 mb-2 overflow-hidden">
                         <div 
-                          className="bg-gradient-to-r from-amber-500 to-orange-600 h-3 rounded-full transition-all duration-500 shadow-sm"
+                          className="bg-gradient-to-r from-amber-500 to-orange-600 h-2 rounded-full transition-all duration-500 shadow-sm"
                           style={{ width: `${progress}%` }}
                         ></div>
                       </div>
                     )}
                     
                     {/* Productivité */}
-                    <div className="bg-slate-100 dark:bg-gray-700 rounded-lg p-2 mb-3">
-                      <div className="text-xs text-slate-600 dark:text-gray-400 mb-1">Productivité</div>
+                    <div className="bg-slate-100 dark:bg-gray-700 rounded-lg p-1.5 sm:p-2 mb-2">
+                      <div className="text-xs text-slate-600 dark:text-gray-400 mb-1">Prod.</div>
                       <div className="flex items-center justify-center">
-                        <div className="text-sm font-bold text-slate-800 dark:text-white">
+                        <div className="text-xs font-bold text-slate-800 dark:text-white">
                           {Math.round(plot.productivity)}%
                         </div>
-                        <TrendingUp className="w-3 h-3 ml-1 text-green-500" />
+                        <TrendingUp className="w-2 h-2 sm:w-3 sm:h-3 ml-1 text-green-500" />
                       </div>
                     </div>
                   </>
@@ -385,17 +385,18 @@ export default function FarmManagement({ gameState, onGameStateUpdate }: FarmMan
 
               {/* Actions contextuelles */}
               {selectedPlot === plot.id && (
-                <div className="mt-4 pt-4 border-t border-slate-200 dark:border-gray-600">
+                <div className="mt-3 pt-3 border-t border-slate-200 dark:border-gray-600">
                   {isEmpty ? (
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         setShowPlantingModal(true);
                       }}
-                      className="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105"
+                      className="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold py-2 sm:py-3 px-3 sm:px-4 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 touch-manipulation text-xs sm:text-sm"
                     >
-                      <Plus className="w-4 h-4 mr-2" />
-                      Planter une culture
+                      <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                      <span className="hidden sm:inline">Planter une culture</span>
+                      <span className="sm:hidden">Planter</span>
                     </button>
                   ) : plot.isReady ? (
                     <button
@@ -403,9 +404,10 @@ export default function FarmManagement({ gameState, onGameStateUpdate }: FarmMan
                         e.stopPropagation();
                         harvestCrop(plot.id);
                       }}
-                      className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105"
+                      className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-2 sm:py-3 px-3 sm:px-4 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 touch-manipulation text-xs sm:text-sm"
                     >
-                      🌾 Récolter maintenant
+                      <span className="hidden sm:inline">🌾 Récolter maintenant</span>
+                      <span className="sm:hidden">🌾 Récolter</span>
                     </button>
                   ) : (
                     <button
@@ -413,11 +415,12 @@ export default function FarmManagement({ gameState, onGameStateUpdate }: FarmMan
                         e.stopPropagation();
                         irrigatePlot(plot.id);
                       }}
-                      className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 disabled:cursor-not-allowed disabled:hover:scale-100"
+                      className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-bold py-2 sm:py-3 px-3 sm:px-4 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 disabled:cursor-not-allowed disabled:hover:scale-100 touch-manipulation text-xs sm:text-sm"
                       disabled={gameState.farm.tools.eau < 10}
                     >
-                      <Droplets className="w-4 h-4 mr-2" />
-                      {gameState.farm.tools.eau < 10 ? 'Eau insuffisante' : 'Arroser (+10%)'}
+                      <Droplets className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                      <span className="hidden sm:inline">{gameState.farm.tools.eau < 10 ? 'Eau insuffisante' : 'Arroser (+10%)'}</span>
+                      <span className="sm:hidden">Arroser</span>
                     </button>
                   )}
                 </div>
@@ -425,8 +428,8 @@ export default function FarmManagement({ gameState, onGameStateUpdate }: FarmMan
               
               {/* Indicateur de productivité */}
               {!isEmpty && (
-                <div className="absolute top-2 right-2">
-                  <div className={`w-3 h-3 rounded-full ${
+                <div className="absolute top-1 right-1 sm:top-2 sm:right-2">
+                  <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
                     plot.productivity >= 80 ? 'bg-green-500' :
                     plot.productivity >= 60 ? 'bg-yellow-500' : 'bg-red-500'
                   }`}></div>

@@ -177,64 +177,64 @@ export default function JeuxPage() {
     <div className="min-h-screen bg-gradient-to-br from-amber-50 to-white dark:from-gray-900 dark:to-gray-800 pt-20 pb-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="relative overflow-hidden bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-500 text-white rounded-3xl shadow-2xl mb-8 group hover:shadow-3xl transition-all duration-500">
+        <div className="relative overflow-hidden bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-500 text-white rounded-3xl shadow-2xl mb-6 sm:mb-8 group hover:shadow-3xl transition-all duration-500 safe-area-inset-left safe-area-inset-right">
           <div className="absolute inset-0 bg-gradient-to-r from-orange-600/90 to-amber-600/90"></div>
-          <div className="relative px-6 sm:px-8 lg:px-10 py-8 sm:py-10">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8">
-              <div className="flex items-center mb-6 sm:mb-0">
-                <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl mr-4 transform group-hover:scale-110 transition-all duration-300">
-                  <div className="text-4xl sm:text-5xl">{levelInfo.icon}</div>
+          <div className="relative px-4 sm:px-6 lg:px-8 xl:px-10 py-6 sm:py-8 lg:py-10">
+            <div className="flex flex-col space-y-6 lg:space-y-0 lg:flex-row lg:items-center lg:justify-between mb-6 lg:mb-8">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 lg:space-x-6">
+                <div className="bg-white/20 backdrop-blur-sm p-4 sm:p-5 lg:p-6 rounded-2xl transform group-hover:scale-110 transition-all duration-300 touch-manipulation">
+                  <div className="text-5xl sm:text-6xl lg:text-7xl">{levelInfo.icon}</div>
                 </div>
-                <div>
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">Le Sentier de la Khidma</h1>
-                  <div className="flex items-center">
-                    <div className={`bg-gradient-to-r ${levelInfo.color} px-4 py-2 rounded-full text-white font-semibold text-sm sm:text-base shadow-lg`}>
+                <div className="text-center sm:text-left">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 leading-tight">Le Sentier de la Khidma</h1>
+                  <div className="flex justify-center sm:justify-start">
+                    <div className={`bg-gradient-to-r ${levelInfo.color} px-4 sm:px-6 py-2 sm:py-3 rounded-full text-white font-semibold text-sm sm:text-base lg:text-lg shadow-lg`}>
                       {levelInfo.name}
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-center">
-                <div className="text-sm text-orange-200 mb-1">Points d'Expérience</div>
-                <div className="text-3xl sm:text-4xl font-bold flex items-center justify-center">
-                  <Trophy className="w-8 h-8 mr-2 text-yellow-300" />
+              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 sm:p-6 text-center">
+                <div className="text-sm sm:text-base text-orange-200 mb-2">Points d'Expérience</div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold flex items-center justify-center">
+                  <Trophy className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 mr-2 text-yellow-300" />
                   {gameState.player.experience}
                 </div>
               </div>
             </div>
 
             {/* Ressources */}
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 border border-white/30 hover:bg-white/30 transition-all duration-300 group/resource">
-                <div className="flex items-center">
-                  <div className="bg-gradient-to-r from-green-400 to-emerald-500 p-3 rounded-xl mr-3 group-hover:scale-110 transition-transform">
-                    <div className="text-xl">💰</div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
+              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 sm:p-5 lg:p-6 border border-white/30 hover:bg-white/30 transition-all duration-300 group/resource touch-manipulation min-h-[80px] sm:min-h-[90px] flex items-center">
+                <div className="flex items-center w-full">
+                  <div className="bg-gradient-to-r from-green-400 to-emerald-500 p-3 sm:p-4 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                    <div className="text-xl sm:text-2xl">💰</div>
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="text-xs text-orange-200 mb-1 font-medium">Faaïda</div>
-                    <div className="text-2xl font-bold truncate">{gameState.player.resources.faaida}</div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 border border-white/30 hover:bg-white/30 transition-all duration-300 group/resource">
-                <div className="flex items-center">
-                  <div className="bg-gradient-to-r from-purple-400 to-pink-500 p-3 rounded-xl mr-3 group-hover:scale-110 transition-transform">
-                    <div className="text-xl">✨</div>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="text-xs text-orange-200 mb-1 font-medium">Baraka</div>
-                    <div className="text-2xl font-bold truncate">{gameState.player.resources.baraka}</div>
+                  <div className="min-w-0 flex-1 text-center sm:text-left">
+                    <div className="text-xs sm:text-sm text-orange-200 mb-1 font-medium">Faaïda</div>
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold truncate">{gameState.player.resources.faaida}</div>
                   </div>
                 </div>
               </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 border border-white/30 hover:bg-white/30 transition-all duration-300 group/resource">
-                <div className="flex items-center">
-                  <div className="bg-gradient-to-r from-blue-400 to-cyan-500 p-3 rounded-xl mr-3 group-hover:scale-110 transition-transform">
-                    <div className="text-xl">🧠</div>
+              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 sm:p-5 lg:p-6 border border-white/30 hover:bg-white/30 transition-all duration-300 group/resource touch-manipulation min-h-[80px] sm:min-h-[90px] flex items-center">
+                <div className="flex items-center w-full">
+                  <div className="bg-gradient-to-r from-purple-400 to-pink-500 p-3 sm:p-4 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                    <div className="text-xl sm:text-2xl">✨</div>
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="text-xs text-orange-200 mb-1 font-medium">L'Éveil</div>
-                    <div className="text-2xl font-bold truncate">{gameState.player.resources.leveil}</div>
+                  <div className="min-w-0 flex-1 text-center sm:text-left">
+                    <div className="text-xs sm:text-sm text-orange-200 mb-1 font-medium">Baraka</div>
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold truncate">{gameState.player.resources.baraka}</div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 sm:p-5 lg:p-6 border border-white/30 hover:bg-white/30 transition-all duration-300 group/resource touch-manipulation min-h-[80px] sm:min-h-[90px] flex items-center">
+                <div className="flex items-center w-full">
+                  <div className="bg-gradient-to-r from-blue-400 to-cyan-500 p-3 sm:p-4 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                    <div className="text-xl sm:text-2xl">🧠</div>
+                  </div>
+                  <div className="min-w-0 flex-1 text-center sm:text-left">
+                    <div className="text-xs sm:text-sm text-orange-200 mb-1 font-medium">L'Éveil</div>
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold truncate">{gameState.player.resources.leveil}</div>
                   </div>
                 </div>
               </div>
@@ -242,145 +242,150 @@ export default function JeuxPage() {
           </div>
           
           {/* Décoration */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-l from-white/10 to-transparent rounded-full -translate-y-16 translate-x-16"></div>
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-r from-white/10 to-transparent rounded-full translate-y-12 -translate-x-12"></div>
+          <div className="absolute top-0 right-0 w-32 h-32 lg:w-40 lg:h-40 bg-gradient-to-l from-white/10 to-transparent rounded-full -translate-y-16 translate-x-16 lg:-translate-y-20 lg:translate-x-20"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-r from-white/10 to-transparent rounded-full translate-y-12 -translate-x-12 lg:translate-y-16 lg:-translate-x-16"></div>
         </div>
 
         {/* Onglets de navigation */}
-        <div className="mb-8">
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-2 sm:p-3 shadow-xl border border-gray-200/50 dark:border-gray-700/50 overflow-x-auto">
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-3 sm:p-4 shadow-xl border border-gray-200/50 dark:border-gray-700/50 overflow-x-auto scrollbar-hide safe-area-inset-bottom">
             <button
               onClick={() => setActiveTab('overview')}
-              className={`group flex items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 whitespace-nowrap text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:scale-105 ${
+              className={`group flex items-center px-2 sm:px-4 lg:px-4 py-2 sm:py-3 lg:py-3 rounded-xl font-bold transition-all duration-300 whitespace-nowrap text-xs sm:text-sm lg:text-sm shadow-lg hover:shadow-xl transform hover:scale-105 touch-manipulation min-h-[44px] sm:min-h-[48px] lg:min-h-[48px] ${
                 activeTab === 'overview'
                   ? 'bg-gradient-to-r from-amber-500 to-orange-600 text-white'
                   : 'text-slate-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 dark:hover:bg-gray-700'
               }`}
             >
-              <div className={`p-2 rounded-lg mr-2 transition-all ${
+              <div className={`p-2 sm:p-3 rounded-lg mr-2 sm:mr-3 transition-all ${
                 activeTab === 'overview' 
                   ? 'bg-white/20' 
                   : 'bg-amber-100 dark:bg-amber-900/30 group-hover:bg-white'
               }`}>
-                <Home className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Home className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
               </div>
-              Vue d'ensemble
+              <span className="hidden xs:inline">Vue d'ensemble</span>
+              <span className="xs:hidden">Vue</span>
             </button>
             <button
               onClick={() => setActiveTab('stats')}
-              className={`group flex items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 whitespace-nowrap text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:scale-105 ${
+              className={`group flex items-center px-2 sm:px-4 lg:px-4 py-2 sm:py-3 lg:py-3 rounded-xl font-bold transition-all duration-300 whitespace-nowrap text-xs sm:text-sm lg:text-sm shadow-lg hover:shadow-xl transform hover:scale-105 touch-manipulation min-h-[44px] sm:min-h-[48px] lg:min-h-[48px] ${
                 activeTab === 'stats'
                   ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white'
                   : 'text-slate-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-emerald-100 hover:to-teal-100 dark:hover:bg-gray-700'
               }`}
             >
-              <div className={`p-2 rounded-lg mr-2 transition-all ${
+              <div className={`p-2 sm:p-3 rounded-lg mr-2 sm:mr-3 transition-all ${
                 activeTab === 'stats' 
                   ? 'bg-white/20' 
                   : 'bg-emerald-100 dark:bg-emerald-900/30 group-hover:bg-white'
               }`}>
-                📊
+                <span className="text-lg sm:text-xl lg:text-2xl">📊</span>
               </div>
-              Mes Statistiques
+              <span className="hidden xs:inline">Mes Statistiques</span>
+              <span className="xs:hidden">Stats</span>
             </button>
             <button
               onClick={() => setActiveTab('farm')}
-              className={`group flex items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 whitespace-nowrap text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:scale-105 ${
+              className={`group flex items-center px-2 sm:px-4 lg:px-4 py-2 sm:py-3 lg:py-3 rounded-xl font-bold transition-all duration-300 whitespace-nowrap text-xs sm:text-sm lg:text-sm shadow-lg hover:shadow-xl transform hover:scale-105 touch-manipulation min-h-[44px] sm:min-h-[48px] lg:min-h-[48px] ${
                 activeTab === 'farm'
                   ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white'
                   : 'text-slate-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 dark:hover:bg-gray-700'
               }`}
             >
-              <div className={`p-2 rounded-lg mr-2 transition-all ${
+              <div className={`p-2 sm:p-3 rounded-lg mr-2 sm:mr-3 transition-all ${
                 activeTab === 'farm' 
                   ? 'bg-white/20' 
                   : 'bg-green-100 dark:bg-green-900/30 group-hover:bg-white'
               }`}>
-                <Wheat className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Wheat className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
               </div>
-              Agriculture
+              <span className="hidden xs:inline">Agriculture</span>
+              <span className="xs:hidden">Ferme</span>
             </button>
             <button
               onClick={() => setActiveTab('khidma')}
-              className={`group flex items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 whitespace-nowrap text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:scale-105 ${
+              className={`group flex items-center px-2 sm:px-4 lg:px-4 py-2 sm:py-3 lg:py-3 rounded-xl font-bold transition-all duration-300 whitespace-nowrap text-xs sm:text-sm lg:text-sm shadow-lg hover:shadow-xl transform hover:scale-105 touch-manipulation min-h-[44px] sm:min-h-[48px] lg:min-h-[48px] ${
                 activeTab === 'khidma'
                   ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white'
                   : 'text-slate-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-100 hover:to-indigo-100 dark:hover:bg-gray-700'
               }`}
             >
-              <div className={`p-2 rounded-lg mr-2 transition-all ${
+              <div className={`p-2 sm:p-3 rounded-lg mr-2 sm:mr-3 transition-all ${
                 activeTab === 'khidma' 
                   ? 'bg-white/20' 
                   : 'bg-blue-100 dark:bg-blue-900/30 group-hover:bg-white'
               }`}>
-                <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Heart className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
               </div>
-              Khidma
+              <span className="hidden xs:inline">Khidma</span>
+              <span className="xs:hidden">Service</span>
             </button>
             <button
               onClick={() => setActiveTab('learning')}
-              className={`group flex items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 whitespace-nowrap text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:scale-105 ${
+              className={`group flex items-center px-2 sm:px-4 lg:px-4 py-2 sm:py-3 lg:py-3 rounded-xl font-bold transition-all duration-300 whitespace-nowrap text-xs sm:text-sm lg:text-sm shadow-lg hover:shadow-xl transform hover:scale-105 touch-manipulation min-h-[44px] sm:min-h-[48px] lg:min-h-[48px] ${
                 activeTab === 'learning'
                   ? 'bg-gradient-to-r from-purple-500 to-pink-600 text-white'
                   : 'text-slate-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-purple-100 hover:to-pink-100 dark:hover:bg-gray-700'
               }`}
             >
-              <div className={`p-2 rounded-lg mr-2 transition-all ${
+              <div className={`p-2 sm:p-3 rounded-lg mr-2 sm:mr-3 transition-all ${
                 activeTab === 'learning' 
                   ? 'bg-white/20' 
                   : 'bg-purple-100 dark:bg-purple-900/30 group-hover:bg-white'
               }`}>
-                <Brain className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Brain className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
               </div>
-              Apprentissage
+              <span className="hidden xs:inline">Apprentissage</span>
+              <span className="xs:hidden">Apprendre</span>
             </button>
           </div>
         </div>
 
         {/* Contenu principal */}
-        <div className="pb-32">
+        <div className="pb-20 sm:pb-28 lg:pb-32 safe-area-inset-bottom">
           {activeTab === 'overview' && (
             <>
               <Overview gameState={gameState} onActivitySuggestion={handleActivitySuggestion} />
               
               {/* Principe fort du jeu */}
-              <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 rounded-3xl p-10 text-white shadow-2xl mb-8 mt-8 relative overflow-hidden group hover:shadow-3xl transition-all duration-500">
+              <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 rounded-3xl p-6 sm:p-8 lg:p-10 xl:p-12 text-white shadow-2xl mb-6 sm:mb-8 mt-6 sm:mt-8 relative overflow-hidden group hover:shadow-3xl transition-all duration-500">
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-600/90 to-orange-600/90 rounded-3xl"></div>
                 <div className="relative text-center">
-                  <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl inline-flex mb-6 transform group-hover:scale-110 transition-all duration-300">
-                    <div className="text-5xl">⚖️</div>
+                  <div className="bg-white/20 backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-2xl inline-flex mb-4 sm:mb-6 transform group-hover:scale-110 transition-all duration-300">
+                    <div className="text-4xl sm:text-5xl lg:text-6xl">⚖️</div>
                   </div>
-                  <h3 className="text-3xl font-bold mb-6">Principe Fondamental</h3>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 mb-6">
-                    <p className="text-2xl font-semibold leading-relaxed italic">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">Principe Fondamental</h3>
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-white/20 mb-4 sm:mb-6">
+                    <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold leading-relaxed italic">
                       « La réussite matérielle n'a de sens et de durée que si elle repose sur le savoir spirituel et le service désintéressé. »
                     </p>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                      <div className="text-3xl mb-2">💰</div>
-                      <div className="font-bold">Faaïda</div>
-                      <div className="text-sm text-orange-200">Matériel</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-4 sm:mb-6">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 sm:p-4 lg:p-6 border border-white/20 touch-manipulation">
+                      <div className="text-2xl sm:text-3xl lg:text-4xl mb-2">💰</div>
+                      <div className="font-bold text-sm sm:text-base lg:text-lg">Faaïda</div>
+                      <div className="text-xs sm:text-sm text-orange-200">Matériel</div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                      <div className="text-3xl mb-2">✨</div>
-                      <div className="font-bold">Baraka</div>
-                      <div className="text-sm text-orange-200">Spirituel</div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 sm:p-4 lg:p-6 border border-white/20 touch-manipulation">
+                      <div className="text-2xl sm:text-3xl lg:text-4xl mb-2">✨</div>
+                      <div className="font-bold text-sm sm:text-base lg:text-lg">Baraka</div>
+                      <div className="text-xs sm:text-sm text-orange-200">Spirituel</div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                      <div className="text-3xl mb-2">🧠</div>
-                      <div className="font-bold">L'Éveil</div>
-                      <div className="text-sm text-orange-200">Intelligence</div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 sm:p-4 lg:p-6 border border-white/20 touch-manipulation">
+                      <div className="text-2xl sm:text-3xl lg:text-4xl mb-2">🧠</div>
+                      <div className="font-bold text-sm sm:text-base lg:text-lg">L'Éveil</div>
+                      <div className="text-xs sm:text-sm text-orange-200">Intelligence</div>
                     </div>
                   </div>
-                  <p className="text-sm text-orange-200 mt-6 font-medium">
+                  <p className="text-xs sm:text-sm lg:text-base text-orange-200 mt-4 sm:mt-6 font-medium leading-relaxed">
                     Aucune progression durable n'est possible sans équilibre entre ces trois dimensions.
                   </p>
                 </div>
                 
                 {/* Décoration */}
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-l from-white/10 to-transparent rounded-full -translate-y-20 translate-x-20"></div>
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-r from-white/10 to-transparent rounded-full translate-y-16 -translate-x-16"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 lg:w-40 lg:h-40 bg-gradient-to-l from-white/10 to-transparent rounded-full -translate-y-16 -translate-x-16 lg:-translate-y-20 lg:-translate-x-20"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-r from-white/10 to-transparent rounded-full translate-y-12 -translate-x-12 lg:translate-y-16 lg:-translate-x-16"></div>
               </div>
 
               {/* Statuts et progression */}

@@ -157,32 +157,32 @@ export default function Overview({ gameState, onActivitySuggestion }: OverviewPr
   const recentAchievements = getRecentAchievements();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* En-tête de bienvenue */}
-      <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-200 dark:border-amber-800 rounded-xl p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+      <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-200 dark:border-amber-800 rounded-xl p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 space-y-3 sm:space-y-0">
+          <div className="flex-1">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-2">
               Bienvenue sur votre Sentier ✨
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
               {formatDate(currentTime)} à {formatTime(currentTime)}
             </p>
           </div>
-          <div className="text-right">
-            <div className="text-sm text-gray-500 dark:text-gray-400">Prochaine session</div>
-            <div className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+          <div className="text-right flex-shrink-0">
+            <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Prochaine session</div>
+            <div className="text-base sm:text-lg font-semibold text-gray-700 dark:text-gray-300">
               Demain matin
             </div>
           </div>
         </div>
         
-        <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-4">
+        <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-3 sm:p-4">
           <div className="flex items-center text-gray-700 dark:text-gray-300">
-            <MapPin className="w-5 h-5 mr-2 text-amber-600" />
-            <span className="font-medium">Localisation actuelle : {(loadedStats?.gameState || gameState).currentLocation}</span>
+            <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-amber-600" />
+            <span className="font-medium text-sm sm:text-base">Localisation actuelle : {(loadedStats?.gameState || gameState).currentLocation}</span>
             {isStatsLoading && (
-              <div className="ml-2 animate-spin rounded-full h-4 w-4 border-b-2 border-amber-600"></div>
+              <div className="ml-2 animate-spin rounded-full h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-amber-600"></div>
             )}
           </div>
           <div className="mt-2 text-xs text-gray-600 dark:text-gray-400">
@@ -192,86 +192,86 @@ export default function Overview({ gameState, onActivitySuggestion }: OverviewPr
       </div>
 
       {/* Statistiques rapides */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 touch-manipulation min-h-[100px] sm:min-h-[120px]">
           <div className="flex items-center justify-between mb-2">
             <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-              <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <Target className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />
             </div>
             <span className="text-xs text-gray-500 dark:text-gray-400">Tâches</span>
           </div>
-          <div className="text-2xl font-bold text-gray-800 dark:text-white">{quickStats.completedTasks}</div>
+          <div className="text-2xl font-bold text-gray-800 dark:text-white mb-1">{quickStats.completedTasks}</div>
           <div className="text-xs text-gray-500 dark:text-gray-400">Accomplies</div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 touch-manipulation min-h-[100px] sm:min-h-[120px]">
           <div className="flex items-center justify-between mb-2">
             <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
-              <MapPin className="w-5 h-5 text-green-600 dark:text-green-400" />
+              <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 dark:text-green-400" />
             </div>
             <span className="text-xs text-gray-500 dark:text-gray-400">Lieux</span>
           </div>
-          <div className="text-2xl font-bold text-gray-800 dark:text-white">{quickStats.unlockedLocations}</div>
+          <div className="text-2xl font-bold text-gray-800 dark:text-white mb-1">{quickStats.unlockedLocations}</div>
           <div className="text-xs text-gray-500 dark:text-gray-400">Déverrouillés</div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 touch-manipulation min-h-[100px] sm:min-h-[120px]">
           <div className="flex items-center justify-between mb-2">
             <div className="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
-              <Zap className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+              <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 dark:text-orange-400" />
             </div>
             <span className="text-xs text-gray-500 dark:text-gray-400">Récoltes</span>
           </div>
-          <div className="text-2xl font-bold text-gray-800 dark:text-white">{quickStats.readyHarvests}</div>
+          <div className="text-2xl font-bold text-gray-800 dark:text-white mb-1">{quickStats.readyHarvests}</div>
           <div className="text-xs text-gray-500 dark:text-gray-400">Prêtes</div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 touch-manipulation min-h-[100px] sm:min-h-[120px]">
           <div className="flex items-center justify-between mb-2">
             <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
-              <Users className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+              <Users className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 dark:text-purple-400" />
             </div>
             <span className="text-xs text-gray-500 dark:text-gray-400">Animaux</span>
           </div>
-          <div className="text-2xl font-bold text-gray-800 dark:text-white">{quickStats.totalAnimals}</div>
+          <div className="text-2xl font-bold text-gray-800 dark:text-white mb-1">{quickStats.totalAnimals}</div>
           <div className="text-xs text-gray-500 dark:text-gray-400">Dans la ferme</div>
         </div>
       </div>
 
       {/* Suggestions d'activités */}
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-white flex items-center">
-            <Star className="w-5 h-5 mr-2 text-yellow-500" />
+        <div className="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
+          <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-white flex items-center">
+            <Star className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-500" />
             Que faire ensuite ?
           </h3>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
           {activitySuggestions.map((suggestion, index) => (
             <div
               key={index}
-              className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer group"
+              className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer group touch-manipulation"
               onClick={() => {
                 if (onActivitySuggestion) {
                   onActivitySuggestion(suggestion.tab as 'farm' | 'khidma' | 'learning' | 'stats');
                 }
               }}
             >
-              <div className="flex items-center">
-                <div className={`p-3 bg-gradient-to-r ${suggestion.color} rounded-lg text-white mr-4`}>
+              <div className="flex items-center mb-2 sm:mb-0">
+                <div className={`p-2 sm:p-3 bg-gradient-to-r ${suggestion.color} rounded-lg text-white mr-3 sm:mr-4 flex-shrink-0`}>
                   {suggestion.icon}
                 </div>
-                <div>
-                  <h4 className="font-semibold text-gray-800 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white">
+                <div className="flex-1">
+                  <h4 className="font-semibold text-gray-800 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white text-sm sm:text-base">
                     {suggestion.title}
                   </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                     {suggestion.description}
                   </p>
                 </div>
               </div>
-              <div className="text-right">
-                <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <div className="text-right flex-shrink-0">
+                <div className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
                   {suggestion.action}
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-400">
@@ -285,25 +285,25 @@ export default function Overview({ gameState, onActivitySuggestion }: OverviewPr
 
       {/* Accomplissements récents */}
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-white flex items-center">
-            <TrendingUp className="w-5 h-5 mr-2 text-emerald-500" />
+        <div className="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
+          <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-white flex items-center">
+            <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-emerald-500" />
             Accomplissements récents
           </h3>
         </div>
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {recentAchievements.length > 0 ? (
             <div className="space-y-3">
               {recentAchievements.map((achievement, index) => (
-                <div key={index} className="flex items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                  <div className="mr-3">
+                <div key={index} className="flex items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg touch-manipulation">
+                  <div className="mr-3 flex-shrink-0">
                     {achievement.icon}
                   </div>
-                  <div className="flex-1">
-                    <div className="font-medium text-gray-800 dark:text-white">
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-gray-800 dark:text-white text-sm sm:text-base truncate">
                       {achievement.title}
                     </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                    <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                       {achievement.time}
                     </div>
                   </div>
@@ -311,25 +311,25 @@ export default function Overview({ gameState, onActivitySuggestion }: OverviewPr
               ))}
             </div>
           ) : (
-            <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-              <Gift className="w-12 h-12 mx-auto mb-3 opacity-50" />
-              <p>Accomplissez vos premières tâches pour voir vos réalisations ici !</p>
+            <div className="text-center py-6 sm:py-8 text-gray-500 dark:text-gray-400">
+              <Gift className="w-8 h-8 sm:w-12 sm:h-12 mx-auto mb-3 opacity-50" />
+              <p className="text-sm sm:text-base">Accomplissez vos premières tâches pour voir vos réalisations ici !</p>
             </div>
           )}
         </div>
       </div>
 
       {/* Conseil du jour */}
-      <div className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6">
-        <div className="flex items-start">
-          <div className="p-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg text-white mr-4 flex-shrink-0">
-            <BookOpen className="w-6 h-6" />
+      <div className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-200 dark:border-indigo-800 rounded-xl p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-start">
+          <div className="p-2 sm:p-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg text-white mr-0 sm:mr-4 flex-shrink-0 mb-3 sm:mb-0">
+            <BookOpen className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
-          <div>
-            <h3 className="font-semibold text-gray-800 dark:text-white mb-2">
+          <div className="flex-1">
+            <h3 className="font-semibold text-gray-800 dark:text-white mb-2 text-sm sm:text-base">
               💡 Conseil du jour
             </h3>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
               Maintenir une régularité dans vos Khidmas renforce votre streak et multiplie les récompenses. 
               Même une petite action quotidienne a plus de valeur que de grands efforts sporadiques.
             </p>
