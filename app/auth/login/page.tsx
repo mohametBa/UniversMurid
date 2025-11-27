@@ -1,13 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/lib/auth/context';
 import { Eye, EyeOff, Mail, Lock, ArrowLeft, LogIn, AlertTriangle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function LoginPage() {
+// Composant qui utilise useSearchParams - doit être dans Suspense
+function LoginFormContent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -19,6 +20,7 @@ export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  // Gestion des paramètres URL
   useEffect(() => {
     const warningParam = searchParams.get('warning');
     if (warningParam) {
@@ -265,4 +267,27 @@ export default function LoginPage() {
       </div>
     </div>
   );
+}
+
+// Composant avec Suspense wrapper
+function LoginForm() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen mt-16 bg-gradient-to-br from-slate-900 via-emerald-950 to-teal-900 flex items-center justify-center p-4">
+        <div className="text-center">
+          <div className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/50">
+            <span className="text-4xl">🕌</span>
+          </div>
+          <p className="text-emerald-400">Chargement...</p>
+        </div>
+      </div>
+    }>
+      <LoginFormContent />
+    </Suspense>
+  );
+}
+
+// Composant principal exporté
+export default function LoginPage() {
+  return <LoginForm />;
 }
