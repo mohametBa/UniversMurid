@@ -134,14 +134,18 @@ export default function RegisterPage() {
             <span className="text-sm">Retour à l'accueil</span>
           </Link>
           
-          <motion.div 
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
-            className="w-20 h-20 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-teal-500/50"
-          >
-            <span className="text-4xl">✨</span>
-          </motion.div>
+                 <motion.div 
+  initial={{ scale: 0 }}
+  animate={{ scale: 1 }}
+  transition={{ delay: 0.2, type: "spring" }}
+  className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/50"
+>
+  <img 
+    src="/LogoTouba.png"
+    alt="icon"
+    className="w-60 h-60 object-contain"
+  />
+</motion.div>
           
           <h1 className="text-3xl font-bold bg-gradient-to-r from-teal-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent mb-2">
             Rejoindre la Communauté

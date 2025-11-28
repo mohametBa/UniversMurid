@@ -9,7 +9,7 @@ export default function StatusBarConfig() {
     // Vérifier si on est sur mobile
     if (Capacitor.isNativePlatform()) {
       const setupStatusBar = async () => {
-        await StatusBar.setStyle({ style: Style.Light }); // ou Style.Dark
+        await StatusBar.setStyle({ style: Style.Dark }); // ou Style.Dark
         await StatusBar.setBackgroundColor({ color: '#ffffff' }); // Votre couleur
         await StatusBar.setOverlaysWebView({ overlay: false });
       };

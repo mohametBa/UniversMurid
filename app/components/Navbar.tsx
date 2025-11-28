@@ -136,45 +136,71 @@ const UserMenuDropdown = ({
 );
 
 const ThemeSelector = ({ theme, setTheme, mounted }: { theme?: string; setTheme: (theme: string) => void; mounted: boolean }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const themeOptions = [
     { value: 'light', icon: Sun, label: 'Clair' },
     { value: 'dark', icon: Moon, label: 'Sombre' },
     { value: 'system', icon: Monitor, label: 'Système' },
   ];
 
+  // Fermer le menu en cliquant en dehors
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (target && !target.closest('.theme-selector-container')) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [isOpen]);
+
+  const handleThemeChange = (themeValue: string) => {
+    setTheme(themeValue);
+    setIsOpen(false);
+  };
+
   return (
-    <div className="relative group">
-      <button 
-        className="p-2.5 rounded-lg bg-white/40 dark:bg-white/5 hover:bg-white/60 dark:hover:bg-white/10 backdrop-blur-md border border-white/20 dark:border-white/10 transition-all duration-300 text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 group-hover:shadow-lg"
+    <div className="relative theme-selector-container">
+      {/* <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="p-2.5 rounded-lg bg-white/40 dark:bg-white/5 hover:bg-white/60 dark:hover:bg-white/10 backdrop-blur-md border border-white/20 dark:border-white/10 transition-all duration-300 text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:shadow-lg"
         aria-label="Sélecteur de thème"
+        aria-expanded={isOpen}
+        aria-haspopup="true"
       >
         <ThemeIcon theme={theme} mounted={mounted} />
-      </button>
+      </button> */}
       
-      <div className="absolute right-0 top-full mt-2 w-48 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-xl shadow-xl border border-white/20 dark:border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-        <div className="p-2 space-y-1">
-          {themeOptions.map((option) => {
-            const IconComponent = option.icon;
-            const isSelected = mounted && theme === option.value;
-            
-            return (
-              <button
-                key={option.value}
-                onClick={() => setTheme(option.value)}
-                className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm rounded-lg transition-all duration-200 font-medium ${
-                  isSelected
-                    ? 'bg-gradient-to-r from-emerald-500/30 to-teal-500/30 dark:from-emerald-400/20 dark:to-teal-400/20 text-emerald-600 dark:text-emerald-400 border border-emerald-400/30 dark:border-emerald-400/30'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-white/40 dark:hover:bg-white/5 border border-transparent'
-                }`}
-              >
-                <IconComponent className="w-4 h-4" />
-                <span>{option.label}</span>
-                {isSelected && <div className="ml-auto w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-pulse"></div>}
-              </button>
-            );
-          })}
+      {isOpen && (
+        <div className="absolute right-0 top-full mt-2 w-48 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-xl shadow-xl border border-white/20 dark:border-white/10 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="p-2 space-y-1">
+            {themeOptions.map((option) => {
+              const IconComponent = option.icon;
+              const isSelected = mounted && theme === option.value;
+              
+              return (
+                <button
+                  key={option.value}
+                  onClick={() => handleThemeChange(option.value)}
+                  className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm rounded-lg transition-all duration-200 font-medium ${
+                    isSelected
+                      ? 'bg-gradient-to-r from-emerald-500/30 to-teal-500/30 dark:from-emerald-400/20 dark:to-teal-400/20 text-emerald-600 dark:text-emerald-400 border border-emerald-400/30 dark:border-emerald-400/30'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-white/40 dark:hover:bg-white/5 border border-transparent'
+                  }`}
+                >
+                  <IconComponent className="w-4 h-4" />
+                  <span>{option.label}</span>
+                  {isSelected && <div className="ml-auto w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-pulse"></div>}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
